@@ -210,6 +210,12 @@ var AceEditor = (function() {
             // tell vim editor that command is done
             _ace.state.cm.signal('vim-command-done', '');
         });
+        vim.defineEx("x", "x", function(cm, input) {
+            self.onExit = _closeAndSave;
+            self.exit();
+            // tell vim editor that command is done
+            _ace.state.cm.signal('vim-command-done', '');
+        });
         vim.map('<CR>', ':wq', 'normal');
         vim.defineEx("bnext", "bn", function(cm, input) {
             Front.contentCommand({
